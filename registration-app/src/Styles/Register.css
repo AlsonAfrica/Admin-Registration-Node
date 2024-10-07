@@ -1,0 +1,99 @@
+html{
+    margin:0px;
+    padding:0px;
+    background-color: black;
+  }
+  .wrapper{
+    background-color: aliceblue;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    background-image: url("../assets/home-gym-hero_3_darken.jpg");
+    background-repeat:no-repeat ;
+    background-size: cover;
+    background-position:center;
+    background-attachment: fixed;
+  }
+  .form-container{
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    width:500px;
+    border-radius: 10px;
+  }
+  .form-container:hover{
+    background-color: transparent;
+
+  }
+  .form-container h1{
+    text-align: center;
+    font-size: 3.5em;
+    color:white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .form-container input{
+    margin:15px 0;
+  }
+  input{
+    width:300px;
+    height:25px;
+    /* border:none; */
+    outline:none;
+    border:2px solid grey;
+    padding:10px 10px 10px 10px;
+    border-radius: 20px;
+  }
+  input::placeholder{
+    color:black;
+  }
+  .forgot-password{
+    text-align: center;
+  }
+  .forgot-password:hover{
+    color:blue;
+    text-decoration: underline;
+  }
+  .button-container{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .button-container > button{
+    width:200px;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  .logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-container > button:hover{
+    cursor:pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border: 2px pink;
+    background-color:cornsilk;
+}
+@media screen and (max-width:600px){
+    .form-container{
+        width:400px;
+    }
+    input{
+        width:250px;
+    }
+}
+@media screen and (max-width:400px){
+    .form-container{
+        width:260px;
+    }
+    input{
+        width:200px;
+    }
+}
+

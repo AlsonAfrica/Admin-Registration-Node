@@ -1,0 +1,281 @@
+.employee-management {
+  text-align: center;
+  margin: 20px;
+}
+html{
+  background-image: url('../assets/compact-home-gym-setup-services.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center;
+  background-attachment: fixed;
+}
+
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+
+}
+
+.table-container {
+  flex: 1;
+  background: grey;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 10px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #feffffb1;
+  color: rgb(14, 14, 14);
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+@media (max-width:500px){
+  th td{
+    padding:8px;
+  }
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #14bfb3;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+.Heading{
+  margin-top: 100px;
+  color:white;
+}
+@media (max-width:1178px){
+  .tables-container{
+    display:flex;
+    flex-direction: column;
+  }
+}
+@media (max-width:500px){
+  table {
+   overflow-x: auto;
+  }
+}
+
+
+@media (max-width: 500px) {
+  th, td {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .edit-btn, .delete-btn {
+    padding: 3px 7px;
+  }
+  .table-container{
+    max-width:100%;
+    justify-content: column;
+  }
+  
+  
+  table {
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    /* flex-direction: column; */
+    /* overflow-x: auto;
+    white-space: nowrap; */
+  }
+
+  thead {
+    display: flex;
+    justify-content: row;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    flex-direction: column;
+  }
+
+  td:before {
+    content: attr(data-label);
+    flex: 1;
+    font-weight: bold;
+  }
+}
+
+/* General Styles */
+.employee-management {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.table-container {
+  margin-bottom: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+/* Responsive Styles for Smaller Screens */
+@media screen and (max-width: 768px) {
+  .employee-management {
+    padding: 10px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .search-bar input {
+    font-size: 14px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 5px;
+    font-size: 14px;
+  }
+}
+
+/* Responsive Form Styles for Small Screens */
+@media screen and (max-width: 576px) {
+  .employee-management {
+    padding: 10px;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .tables-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

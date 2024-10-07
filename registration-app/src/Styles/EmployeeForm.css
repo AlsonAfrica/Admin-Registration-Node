@@ -1,0 +1,71 @@
+
+.employee-form {
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 20px;
+    background-color: grey;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    /* width:500px; */
+    /* margin-left: 700px; */
+  }
+  .employee-form:hover{
+    background-color:transparent ;
+  }
+  
+  .employee-form input {
+    /* justify-content: center;
+    align-items: center; */
+    margin-bottom: 10px;
+    padding: 8px;
+    /* width: calc(100% - 20px); */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    /* height: 30px; */
+  }
+  
+  .employee-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e2eee2;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+  }
+  
+  .employee-form button:hover {
+    cursor:pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border: 2px pink;
+    background-color:cornsilk;
+  }
+  .search-bar{
+    margin-bottom: 20px;
+  }
+  .employee-form h2{
+    text-align: center;
+  }
+  .Image-input{
+       height: 60px;
+  }
+  /* .employee-form {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  } */
+   .Save-btn{
+    margin: 10px;
+   }
+   .Upload-img{
+    height: 60px;
+   }
+   
