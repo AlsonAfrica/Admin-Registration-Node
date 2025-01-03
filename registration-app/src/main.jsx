@@ -13,6 +13,8 @@ import UpdatePage from './Pages/UpdatePage';
 import Update from './Component/Update';
 import ProfilePage from './Pages/ProfilePage';
 import AddAdminPage from './Pages/AddAdmin';
+import AdminTable from './Pages/AdminTable';
+import AdminTablePage from './Pages/AdminTable';
 
 
 const router = createBrowserRouter([
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: '/AddAdmins',
     element: <AddAdminPage/>
+  },
+  {
+    path:"/AdminTablePage",
+    element:<AdminTablePage/>
   }
 ]);
 

@@ -30,6 +30,7 @@ const Navbar = () => {
       </button>
       <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         <li><Link to="/Home">Home</Link></li>
+        <li><Link to="/AdminTablePage">Admins</Link></li>
         <li><Link to="/Form">Add Employee</Link></li>
         <li><Link to="/AddAdmins">Add Admins</Link></li>
         <li><Link to="/ProfilePage">Profile</Link></li>
