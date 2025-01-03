@@ -19,16 +19,29 @@ const LoginForm = () => {
   };
   
     // Sign in using Firebase authentication
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
-      alert("Login successful");
-      navigate('/home'); // Navigate to the home page after login
-    } catch (error) {
-      setError("Invalid credentials or user does not exist");
-    }
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // Log in the user
+        const userCredential = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
+        
+        // Retrieve the UID of the logged-in user
+        const { uid } = userCredential.user;
+  
+        // Store the UID in localStorage
+        localStorage.setItem('adminId', uid);
+
+        console.log(uid)
+  
+        alert("Login successful");
+        
+        // Navigate to the home page after login
+        navigate('/home');
+      } catch (error) {
+        setError("Invalid credentials or user does not exist");
+      }
+    };
+  
 
   return (
     <div className="wrapper">

@@ -62,6 +62,8 @@ const Register = () => {
         photoURL: photoURL, // Store the download URL of the uploaded photo
       });
 
+      localStorage.setItem('adminId', uid);
+
       alert("Registration successful");
       
       // Clear form data after registration

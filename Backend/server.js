@@ -107,6 +107,21 @@ app.delete('/users/:id', async (req, res) => {
 
 
 // get admins
+app.get('/admins/:id', async (req, res) => {
+    try {
+        const adminRef = db.collection('admins').doc(req.params.id); // Reference to "admins" collection
+        const adminDoc = await adminRef.get(); // Fetch document
+
+        if (!adminDoc.exists) {
+            return res.status(404).json({ error: 'Admin not found' }); // Handle not found case
+        }
+
+        res.status(200).json({ id: adminDoc.id, ...adminDoc.data() }); // Respond with admin data
+    } catch (error) {
+        console.error('Error fetching admin:', error); // Detailed error logging
+        res.status(500).json({ error: 'Error fetching admin', details: error.message });
+    }
+});
 
 
 // Start the server
