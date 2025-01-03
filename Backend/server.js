@@ -124,6 +124,44 @@ app.get('/admins/:id', async (req, res) => {
 });
 
 
+app.post('/mini-admins', async (req, res) => {
+    try {
+        const { name, email, phoneNumber, position, image, idNumber, password } = req.body;
+
+        // Validate request body
+        if (!name || !email || !phoneNumber || !position || !idNumber || !password) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        // Create a new user in Firebase Authentication
+        const userRecord = await admin.auth().createUser({
+            email,
+            password,
+            displayName: name,
+            phoneNumber,
+        });
+
+        // Add additional details to Firestore in the "mini admins" collection
+        const adminRef = db.collection('mini-admins').doc(userRecord.uid);
+        await adminRef.set({
+            name,
+            email,
+            phoneNumber,
+            position,
+            image,
+            idNumber,
+            uid: userRecord.uid, // Reference to Auth UID
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        res.status(201).json({ message: 'Mini admin created successfully', uid: userRecord.uid });
+    } catch (error) {
+        console.error('Error creating mini admin:', error); // Detailed error logging
+        res.status(500).json({ error: 'Error creating mini admin', details: error.message });
+    }
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

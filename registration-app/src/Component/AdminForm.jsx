@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEmployeeContext } from '../contexts/EmployeeContext';
 import '../Styles/EmployeeForm.css';
 import { IoMdPersonAdd } from "react-icons/io";
+import axios from 'axios'; // Import Axios
 
 const FormAdmin = () => {
   const { setEmployees } = useEmployeeContext();
@@ -11,7 +12,7 @@ const FormAdmin = () => {
   const [phone, setPhone] = useState('');
   const [position, setPosition] = useState('');
   const [picture, setPicture] = useState('');
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleFileChange = (e) => {
@@ -39,36 +40,31 @@ const FormAdmin = () => {
       return;
     }
 
-    setIsLoading(true); // Start loading
+    // Format phone number for Thailand (66 is Thailand's country code)
+    // Remove the leading 0 and add +66
+    const formattedPhone = `+66${phone.substring(1)}`;
+
+    setIsLoading(true);
 
     const newEmployee = {
       name,
       email,
-      phoneNumber: phone,
+      phoneNumber: formattedPhone, // This will now be in format: +66XXXXXXXXX
       position,
       image: picture || 'https://via.placeholder.com/150',
-      idNumber: id, // Adjust according to your backend field names
+      idNumber: id,
+      password: 'defaultPassword123',
     };
 
     try {
-      // Post employee data to the server
-      const response = await fetch('http://localhost:5001/users', {
-        method: 'POST',
+      const response = await axios.post('http://localhost:5001/mini-admins', newEmployee, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newEmployee),
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      // Update local state on successful response
-      const addedEmployee = await response.json();
-      setEmployees(prevEmployees => {
-        const updatedEmployees = [...prevEmployees, addedEmployee]; // Assuming server returns the created employee
-        // Save to local storage
+      setEmployees((prevEmployees) => {
+        const updatedEmployees = [...prevEmployees, response.data];
         localStorage.setItem('employees', JSON.stringify(updatedEmployees));
         return updatedEmployees;
       });
@@ -81,24 +77,59 @@ const FormAdmin = () => {
       setPosition('');
       setPicture('');
 
-      setIsSuccess(true);  // Show success message
+      setIsSuccess(true);
     } catch (error) {
-      console.error('Error adding employee:', error); // Log error
-      alert('Failed to add employee.'); // Alert user
+      console.error('Error adding employee:', error.response?.data || error.message);
+      alert('Failed to add employee. Error: ' + (error.response?.data?.message || error.message));
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
-  };
+};
 
   return (
     <form className="employee-form" onSubmit={handleSubmit}>
       <h2>ADD NEW ADMINS</h2>
-      <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-      <input type="text" placeholder="ID" value={id} onChange={(e) => setId(e.target.value)} required />
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="text" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-      <input type="text" placeholder="Position" value={position} onChange={(e) => setPosition(e.target.value)} required />
-      <input className="Image-input" type="file" onChange={handleFileChange} required />
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="ID"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        required
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Position"
+        value={position}
+        onChange={(e) => setPosition(e.target.value)}
+        required
+      />
+      <input
+        className="Image-input"
+        type="file"
+        onChange={handleFileChange}
+        required
+      />
       <button type="submit" disabled={isLoading}>
         {isLoading ? 'Adding...' : 'Add Employee'}
       </button>
