@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
 
-const ProfilePage = () => {
+const ProfileForm = () => {
   const [profile, setProfile] = useState(null); // State to store admin profile
   const [loading, setLoading] = useState(true); // State for loading indicator
   const [error, setError] = useState(null); // State for error handling
@@ -45,7 +45,6 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <Navbar />
       <div
         style={{
           minHeight: '100vh',
@@ -181,4 +180,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfileForm;

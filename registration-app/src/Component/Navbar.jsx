@@ -31,7 +31,9 @@ const Navbar = () => {
       <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         <li><Link to="/Home">Home</Link></li>
         <li><Link to="/Form">Add Employee</Link></li>
-        <li><Link to="/Profile">Profile</Link></li>
+        <li><Link to="/AddAdmins">Add Admins</Link></li>
+        <li><Link to="/ProfilePage">Profile</Link></li>
+        
         {/* <li><Link to="">Update Profile</Link></li> */}
         <li>
           <a href="#" onClick={handleLogout}>

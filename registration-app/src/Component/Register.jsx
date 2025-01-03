@@ -17,6 +17,7 @@ const Register = () => {
     email: '',
     role: 'System-admin', // default value for role
     photo: null, // to store the photo file
+    IdNumber: ''
   });
   
   const [error, setError] = useState('');
@@ -30,6 +31,7 @@ const Register = () => {
     setUser({ ...user, photo: e.target.files[0] });
   };
 
+  
   // Register the user and store their info in Firestore
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +62,7 @@ const Register = () => {
         email: user.email,
         role: user.role, // role is 'System-admin'
         photoURL: photoURL, // Store the download URL of the uploaded photo
+        IdNumber: user.IdNumber
       });
 
       localStorage.setItem('adminId', uid);
@@ -76,6 +79,7 @@ const Register = () => {
         email: '',
         role: 'System-admin',
         photo: null,
+        IdNumber: ""
       });
       
       navigate('/'); // Redirect to login page or homepage
@@ -126,6 +130,17 @@ const Register = () => {
                 name="age" 
                 placeholder="Age" 
                 value={user.age} 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+
+            <div>
+              <input 
+                type="number" 
+                name="password" 
+                placeholder="ID Number" 
+                value={user.IdNumber} 
                 onChange={handleChange} 
                 required 
               />
