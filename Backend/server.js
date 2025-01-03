@@ -105,6 +105,10 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
+
+// get admins
+
+
 // Start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
