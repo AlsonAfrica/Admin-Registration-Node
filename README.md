@@ -61,7 +61,7 @@
 
 1. **Clone the repository**
 ```bash
-git clone [repository-url]
+git clone https://github.com/AlsonAfrica/Admin-Registration-Node.git
 cd admin-management-system
 ```
 
