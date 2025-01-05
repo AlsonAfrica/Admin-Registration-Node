@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useEmployeeContext } from '../contexts/EmployeeContext';
-import { db } from '../Firebase/firebaseConfig'; // Import your Firestore config
-import { collection, getDocs } from 'firebase/firestore';
 import '../Styles/EmployeeManagement.css';
 import EditEmployeeForm from './EditEmployeeForm';
+import axios from 'axios';
 
 const AdminTable = () => {
   const { employees, setEmployees, previousEmployees, setPreviousEmployees } = useEmployeeContext();
   const [searchQuery, setSearchQuery] = useState('');
   const [editingEmployee, setEditingEmployee] = useState(null);
-
+  const [miniAdmins, setMiniAdmins] = useState([]); // State to store the fetched data
+  
   // Load employees from Firestore
   useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const employeesCollection = collection(db, 'users');
-        const employeeSnapshot = await getDocs(employeesCollection);
-        const employeeList = employeeSnapshot.docs.map(doc => ({
-          id: doc.id, // Firestore document ID
-          idNumber: doc.data().idNumber, // Assuming `idNumber` is the field name in Firestore
-          ...doc.data() // Spread operator to get other employee data
-        }));
-        setEmployees(employeeList);
-      } catch (error) {
-        console.error("Error fetching employees from Firestore:", error);
-      }
+    const fetchMiniAdmins = async () => {
+        try {
+            const response = await axios.get('http://localhost:5001/mini-admins'); // Replace with your actual backend URL
+            setMiniAdmins(response.data); // Store the fetched data in state
+            console.log('Mini Admins:', response.data); // Log the data
+        } catch (error) {
+            console.error('Error fetching mini-admins:', error); // Log the error
+        }
     };
 
-    fetchEmployees();
-  }, [setEmployees]);
+    fetchMiniAdmins();
+}, []);
 
   // Save previous employees to localStorage whenever `previousEmployees` changes
   useEffect(() => {
@@ -72,9 +67,10 @@ const AdminTable = () => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredEmployees = employees.filter((employee) =>
-    employee.idNumber.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredEmployees = miniAdmins.filter((admin) =>
+  admin.idNumber.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
 
   return (
     <div className="employee-management">
@@ -110,15 +106,15 @@ const AdminTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredEmployees.map((employee) => (
-                  <tr key={employee.id}>
-                    <td>{employee.name}</td>
-                    <td>{employee.idNumber}</td> {/* Display the idNumber here */}
-                    <td>{employee.email}</td>
-                    <td>{employee.phone}</td>
-                    <td>{employee.position}</td>
+                {filteredEmployees.map((admin) => (
+                  <tr key={admin.id}>
+                    <td>{admin.name}</td>
+                    <td>{admin.idNumber}</td> {/* Display the idNumber here */}
+                    <td>{admin.email}</td>
+                    <td>{admin.phoneNumber}</td>
+                    <td>{admin.position}</td>
                     <td>
-                      <img src={employee.picture} alt={employee.name} />
+                      <img src={admin.image} alt={admin.name} />
                     </td>
                     <td className="actions">
                       <button className="edit-btn" onClick={() => handleEdit(employee)}>

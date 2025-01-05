@@ -123,7 +123,7 @@ app.get('/admins/:id', async (req, res) => {
     }
 });
 
-
+// Post the mini-admins
 app.post('/mini-admins', async (req, res) => {
     try {
         const { name, email, phoneNumber, position, image, idNumber, password } = req.body;
@@ -158,6 +158,26 @@ app.post('/mini-admins', async (req, res) => {
     } catch (error) {
         console.error('Error creating mini admin:', error); // Detailed error logging
         res.status(500).json({ error: 'Error creating mini admin', details: error.message });
+    }
+});
+
+
+// Get all the mini admins
+app.get('/mini-admins', async (req, res) => {
+    try {
+        const adminRef = db.collection('mini-admins'); // Reference to "mini-admins" collection
+        const snapshot = await adminRef.get(); // Fetch all documents in the collection
+
+        if (snapshot.empty) {
+            return res.status(404).json({ error: 'No mini-admins found' }); // Handle empty collection
+        }
+
+        const miniAdmins = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); // Map documents to an array of data
+
+        res.status(200).json(miniAdmins); // Respond with the array of admin data
+    } catch (error) {
+        console.error('Error fetching mini-admins:', error); // Detailed error logging
+        res.status(500).json({ error: 'Error fetching mini-admins', details: error.message });
     }
 });
 
