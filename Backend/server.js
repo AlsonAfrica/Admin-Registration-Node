@@ -182,6 +182,21 @@ app.get('/mini-admins', async (req, res) => {
     }
 });
 
+// delete admin
+app.delete('/mini-admins/:id', async (req,res)=>{
+    const {id} = req.params;
+
+    try {
+        const adminRef = db.collection('mini-admins').doc(id);
+
+        await adminRef.delete();
+
+        res.status(200).json({message:`user with ID ${id} was deleted successfully`})
+    } catch (error) {
+        console.log("error deleting mini-admin", error);
+        res.status(500).json({error: 'Error deleting mini-admin', details: error.message})
+    }
+})
 
 // Start the server
 const PORT = process.env.PORT || 5001;

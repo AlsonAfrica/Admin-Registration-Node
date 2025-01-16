@@ -98,7 +98,7 @@ console.log("this is my position again",userposition);
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <a href="#"><img src={img1} alt="Logo" className="logo-nav" /></a>
+        <a href="/Home"><img src={img1} alt="Logo" className="logo-nav" /></a>
       </div>
       <button className="hamburger" onClick={toggleMenu}>
         &#9776; {/* Hamburger icon */}

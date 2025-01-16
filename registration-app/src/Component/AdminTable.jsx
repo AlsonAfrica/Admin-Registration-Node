@@ -8,17 +8,17 @@ const AdminTable = () => {
   const { employees, setEmployees, previousEmployees, setPreviousEmployees } = useEmployeeContext();
   const [searchQuery, setSearchQuery] = useState('');
   const [editingEmployee, setEditingEmployee] = useState(null);
-  const [miniAdmins, setMiniAdmins] = useState([]); // State to store the fetched data
+  const [miniAdmins, setMiniAdmins] = useState([]); 
   
   // Load employees from Firestore
   useEffect(() => {
     const fetchMiniAdmins = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/mini-admins'); // Replace with your actual backend URL
-            setMiniAdmins(response.data); // Store the fetched data in state
-            console.log('Mini Admins:', response.data); // Log the data
+            const response = await axios.get('http://localhost:5001/mini-admins'); 
+            setMiniAdmins(response.data); 
+            console.log('Mini Admins:', response.data); 
         } catch (error) {
-            console.error('Error fetching mini-admins:', error); // Log the error
+            console.error('Error fetching mini-admins:', error); 
         }
     };
 
@@ -36,16 +36,21 @@ const AdminTable = () => {
     }
   }, [previousEmployees]);
 
-  const handleDelete = (id) => {
-    const employeeToDelete = employees.find((employee) => employee.id === id);
-    if (employeeToDelete) {
-      const updatedEmployees = employees.filter((employee) => employee.id !== id);
-      const updatedPreviousEmployees = [...previousEmployees, employeeToDelete];
 
-      setEmployees(updatedEmployees);
-      setPreviousEmployees(updatedPreviousEmployees);
-    }
-  };
+  // Delete admin
+
+const deleteMiniAdmin = async (userId)=>{
+
+  try {
+    const response = await axios.delete(`http://localhost:5001/mini-admins/${userId}`);
+
+    console.log("User deleted:", response.data);
+    alert("Admin deleted successfully")
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    alert('Error deleting user');
+  }
+}
 
   const handleEdit = (employee) => {
     setEditingEmployee(employee);
@@ -120,7 +125,7 @@ const AdminTable = () => {
                       <button className="edit-btn" onClick={() => handleEdit(employee)}>
                         Edit
                       </button>
-                      <button className="delete-btn" onClick={() => handleDelete(employee.id)}>
+                      <button className="delete-btn" onClick={() => deleteMiniAdmin(admin.id)}>
                         Delete
                       </button>
                     </td>
