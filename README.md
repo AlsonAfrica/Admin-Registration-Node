@@ -26,6 +26,15 @@
 - 📸 Profile photo
 - 👨‍💼 Company role (default: sysadmin)
 
+## Credentials 
+System-Admin: 
+Email => james@gmail.com
+Password => System@25
+
+Mini-admin:
+Email => kabelo@gmail.com
+Password => defaultPassword123
+
 ## 🛠️ Tech Stack
 
 ### Frontend
