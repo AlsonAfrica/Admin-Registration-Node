@@ -150,6 +150,7 @@ app.post('/mini-admins', async (req, res) => {
             position,
             image,
             idNumber,
+            password,
             uid: userRecord.uid, // Reference to Auth UID
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });

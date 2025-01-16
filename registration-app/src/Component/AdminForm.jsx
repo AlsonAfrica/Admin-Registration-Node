@@ -12,6 +12,7 @@ const FormAdmin = () => {
   const [phone, setPhone] = useState('');
   const [position, setPosition] = useState('');
   const [picture, setPicture] = useState('');
+  const [password,setPassword]= useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 

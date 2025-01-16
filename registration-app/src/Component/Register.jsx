@@ -135,7 +135,7 @@ const Register = () => {
               />
             </div>
 
-            <div>
+            {/* <div>
               <input 
                 type="number" 
                 name="password" 
@@ -144,7 +144,7 @@ const Register = () => {
                 onChange={handleChange} 
                 required 
               />
-            </div>
+            </div> */}
             
             {/* Photo field */}
             <div id="photo-field">
