@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useEmployeeContext } from '../contexts/EmployeeContext';
 import '../Styles/EmployeeManagement.css';
-import EditEmployeeForm from './EditEmployeeForm';
+import EditAdminsForm from './EditAdminsForm';
 import axios from 'axios';
 
 const AdminTable = () => {
   const { employees, setEmployees, previousEmployees, setPreviousEmployees } = useEmployeeContext();
   const [searchQuery, setSearchQuery] = useState('');
-  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [editingAdmin, setEditingAdmin] = useState(null);
   const [miniAdmins, setMiniAdmins] = useState([]); 
   
   // Load employees from Firestore
@@ -52,20 +52,20 @@ const deleteMiniAdmin = async (userId)=>{
   }
 }
 
-  const handleEdit = (employee) => {
-    setEditingEmployee(employee);
+  const handleEdit = (admin) => {
+    setEditingAdmin(admin);
   };
 
-  const handleSave = (updatedEmployee) => {
-    const updatedEmployees = employees.map((employee) =>
-      employee.id === updatedEmployee.id ? updatedEmployee : employee
+  const handleSave = (updatedAdmin) => {
+    const updatedEmployees = employees.map((admin) =>
+      admin.id === updatedAdmin.id ? updatedAdmin :admin
     );
     setEmployees(updatedEmployees);
-    setEditingEmployee(null);
+    setEditingAdmin(null);
   };
 
   const handleCancel = () => {
-    setEditingEmployee(null);
+    setEditingAdmin(null);
   };
 
   const handleSearchChange = (e) => {
@@ -88,9 +88,9 @@ const deleteMiniAdmin = async (userId)=>{
           onChange={handleSearchChange}
         />
       </div>
-      {editingEmployee ? (
-        <EditEmployeeForm
-          employeeToEdit={editingEmployee}
+      {editingAdmin ? (
+        <EditAdminsForm
+          AdminToEdit={editingAdmin}
           onSave={handleSave}
           onCancel={handleCancel}
         />
@@ -122,7 +122,7 @@ const deleteMiniAdmin = async (userId)=>{
                       <img src={admin.image} alt={admin.name} />
                     </td>
                     <td className="actions">
-                      <button className="edit-btn" onClick={() => handleEdit(employee)}>
+                      <button className="edit-btn" onClick={() => handleEdit(admin)}>
                         Edit
                       </button>
                       <button className="delete-btn" onClick={() => deleteMiniAdmin(admin.id)}>
@@ -149,15 +149,15 @@ const deleteMiniAdmin = async (userId)=>{
                 </tr>
               </thead>
               <tbody>
-                {previousEmployees.map((employee) => (
-                  <tr key={employee.id}>
-                    <td>{employee.name}</td>
-                    <td>{employee.idNumber}</td> {/* Display the idNumber here */}
-                    <td>{employee.email}</td>
-                    <td>{employee.phone}</td>
-                    <td>{employee.position}</td>
+                {previousEmployees.map((admin) => (
+                  <tr key={admin.id}>
+                    <td>{admin.name}</td>
+                    <td>{admin.idNumber}</td> {/* Display the idNumber here */}
+                    <td>{admin.email}</td>
+                    <td>{admin.phone}</td>
+                    <td>{admin.position}</td>
                     <td>
-                      <img src={employee.picture} alt={employee.name} />
+                      <img src={admin.picture} alt={admin.name} />
                     </td>
                   </tr>
                 ))}

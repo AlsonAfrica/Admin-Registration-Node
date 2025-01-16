@@ -30,6 +30,8 @@ const EmployeeManagement = () => {
     fetchEmployees();
   }, [setEmployees]);
 
+  console.log(employees)
+
   // Save previous employees to localStorage whenever `previousEmployees` changes
   useEffect(() => {
     if (previousEmployees.length > 0) {
@@ -118,7 +120,7 @@ const EmployeeManagement = () => {
                     <td>{employee.phone}</td>
                     <td>{employee.position}</td>
                     <td>
-                      <img src={employee.picture} alt={employee.name} />
+                      <img src={employee.image} alt={employee.name} />
                     </td>
                     <td className="actions">
                       <button className="edit-btn" onClick={() => handleEdit(employee)}>
@@ -156,7 +158,7 @@ const EmployeeManagement = () => {
                     <td>{employee.phone}</td>
                     <td>{employee.position}</td>
                     <td>
-                      <img src={employee.picture} alt={employee.name} />
+                      <img src={employee.image} alt={employee.name} />
                     </td>
                   </tr>
                 ))}

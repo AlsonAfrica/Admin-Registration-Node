@@ -198,6 +198,34 @@ app.delete('/mini-admins/:id', async (req,res)=>{
     }
 })
 
+// Update admins
+app.put('/editmini-admins/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, email, phoneNumber, position, image, idNumber, password } = req.body;
+  
+    if (!name || !email || !phoneNumber || !position || !image || !idNumber || !password) {
+      return res.status(400).json({ error: 'All fields are required.' });
+    }
+  
+    try {
+      const adminRef = db.collection('mini-admins').doc(id);
+      await adminRef.update({
+        name,
+        email,
+        phoneNumber,
+        position,
+        image,
+        idNumber,
+        password,
+      });
+      res.status(200).json({ message: `User with ID ${id} updated successfully` });
+    } catch (error) {
+      console.error('Error updating mini-admin:', error);
+      res.status(500).json({ error: 'Error updating mini-admin', details: error.message });
+    }
+  });
+
+
 // Start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
