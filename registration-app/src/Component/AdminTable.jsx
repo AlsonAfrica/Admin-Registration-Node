@@ -37,25 +37,62 @@ const AdminTable = () => {
   }, [previousEmployees]);
 
 
-  // Delete admin
-
+// Delete admin
 const deleteMiniAdmin = async (userId)=>{
 
   try {
     const response = await axios.delete(`http://localhost:5001/mini-admins/${userId}`);
 
-    console.log("User deleted:", response.data);
-    alert("Admin deleted successfully")
+    console.log("mini-admin deleted:", response.data);
+    alert("mini-admin deleted successfully");
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error('Error deleting mini-admin:', error);
     alert('Error deleting user');
   }
 }
 
+
+// Blocking mini admins from accessing the application
+const blockMiniAdmin = async (userId)=>{
+  try {
+    const response = await axios.patch(`http://localhost:5001/mini-admins/${userId}/block`);
+
+    console.log(response.data.message);
+    alert("mini-admin blocked successfully");
+    return response.data
+  } catch (error) {
+    console.error('Error blocking mini-admin:', error);
+    alert('Error blocking mini-admin');
+  }
+}
+
+
+
+
+// unblocking mini-admin from accessing the application
+const unblockMiniAdmin = async (userId)=>{
+  try {
+    const response = await axios.patch(`http://localhost:5001/mini-admins/${userId}/unblock`);
+
+    console.log(response.data.message);
+    alert("mini-admin unblocked successfully");
+    return response.data
+  } catch (error) {
+    console.error('Error deleting mini-admin:', error);
+    alert('Error blocking mini-admin');
+  }
+}
+
+
+
+
+// Edit admin details
   const handleEdit = (admin) => {
     setEditingAdmin(admin);
   };
 
+
+// Save admin details after Editting
   const handleSave = (updatedAdmin) => {
     const updatedEmployees = employees.map((admin) =>
       admin.id === updatedAdmin.id ? updatedAdmin :admin
@@ -64,17 +101,23 @@ const deleteMiniAdmin = async (userId)=>{
     setEditingAdmin(null);
   };
 
+
+
+// Cancel form edit
   const handleCancel = () => {
     setEditingAdmin(null);
   };
 
+
+  // Search filtering by key word
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
   const filteredEmployees = miniAdmins.filter((admin) =>
   admin.idNumber.toLowerCase().includes(searchQuery.toLowerCase())
 );
+
+
 
 
   return (
@@ -124,6 +167,12 @@ const deleteMiniAdmin = async (userId)=>{
                     <td className="actions">
                       <button className="edit-btn" onClick={() => handleEdit(admin)}>
                         Edit
+                      </button>
+                      <button className="block-btn" onClick={() => blockMiniAdmin(admin.id)}>
+                        Block
+                      </button>
+                      <button className="block-btn" onClick={() => unblockMiniAdmin (admin.id)}>
+                        Unblock
                       </button>
                       <button className="delete-btn" onClick={() => deleteMiniAdmin(admin.id)}>
                         Delete

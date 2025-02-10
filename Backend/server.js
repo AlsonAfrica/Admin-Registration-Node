@@ -226,6 +226,37 @@ app.put('/editmini-admins/:id', async (req, res) => {
   });
 
 
+//   Block mini admins from loggin to the application
+  app.patch('/mini-admins/:id/block', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Disable the user in Firebase Authentication
+        await admin.auth().updateUser(id, { disabled: true });
+
+        res.status(200).json({ message: `Mini-admin with ID ${id} has been blocked successfully` });
+    } catch (error) {
+        console.error("Error blocking mini-admin:", error);
+        res.status(500).json({ error: 'Error blocking mini-admin', details: error.message });
+    }
+});
+
+// Unblocking mini-admins from the application
+  app.patch('/mini-admins/:id/unblock', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Disable the user in Firebase Authentication
+        await admin.auth().updateUser(id, { disabled: false });
+
+        res.status(200).json({ message: `Mini-admin with ID ${id} has been unblocked successfully` });
+    } catch (error) {
+        console.error("Error unblocking mini-admin:", error);
+        res.status(500).json({ error: 'Error unblocking mini-admin', details: error.message });
+    }
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

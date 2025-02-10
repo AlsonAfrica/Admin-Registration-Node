@@ -73,11 +73,16 @@ img {
   gap: 10px;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn, .delete-btn,.block-btn {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.block-btn{
+  background-color: #f44384;
+  color: white;
 }
 
 .edit-btn {
@@ -89,6 +94,8 @@ img {
   background-color: #f44336;
   color: white;
 }
+
+
 .Heading{
   margin-top: 100px;
   color:white;
@@ -112,7 +119,7 @@ img {
     padding: 5px;
   }
 
-  .edit-btn, .delete-btn {
+  .edit-btn, .delete-btn,.block-btn {
     padding: 3px 7px;
   }
   .table-container{

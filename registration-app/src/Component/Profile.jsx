@@ -172,6 +172,18 @@ const ProfileForm = () => {
                 <span style={{ color: '#4a5568', fontWeight: '500' }}>Role</span>
                 <span style={{ color: '#2d3748' }}>{profile.role}</span>
               </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                }}
+              >
+                <span style={{ color: '#4a5568', fontWeight: '500' }}>ID Number</span>
+                <span style={{ color: '#2d3748' }}>{profile.IdNumber}</span>
+              </div>
             </div>
           </div>
         </div>

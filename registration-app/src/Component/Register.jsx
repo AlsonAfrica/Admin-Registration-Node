@@ -152,7 +152,7 @@ const Register = () => {
                 placeholder="ID Number" 
                 value={user.IdNumber} 
                 onChange={handleIdNumberChange}  // Add this to update the state
-                pattern="\d{13}"  // Ensures exactly 13 digits on form submission
+                pattern="\d{13}"  
                 maxLength="13" 
                 required 
               />
