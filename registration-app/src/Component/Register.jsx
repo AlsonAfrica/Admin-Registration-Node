@@ -27,6 +27,16 @@ const Register = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const handleIdNumberChange = (e) => {
+    const value = e.target.value;
+    
+    // Allow only numeric input and ensure max length of 13
+    if (/^\d*$/.test(value) && value.length <= 13) {
+      setUser({ ...user, IdNumber: value });
+    }
+  };
+  
+
   const handleFileChange = (e) => {
     setUser({ ...user, photo: e.target.files[0] });
   };
@@ -135,16 +145,18 @@ const Register = () => {
               />
             </div>
 
-            {/* <div>
-              <input 
+            <div>
+            <input 
                 type="number" 
-                name="password" 
+                name="IdNumber"  // Ensure it matches the state key
                 placeholder="ID Number" 
                 value={user.IdNumber} 
-                onChange={handleChange} 
+                onChange={handleIdNumberChange}  // Add this to update the state
+                pattern="\d{13}"  // Ensures exactly 13 digits on form submission
+                maxLength="13" 
                 required 
               />
-            </div> */}
+            </div>
             
             {/* Photo field */}
             <div id="photo-field">

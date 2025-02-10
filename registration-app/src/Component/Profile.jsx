@@ -18,7 +18,7 @@ const ProfileForm = () => {
             }
             const response = await axios.get(`http://localhost:5001/admins/${adminId}`);
             setProfile(response.data);
-            console.log(profile)
+            console.log("This is me",profile)
             setLoading(false);
         } catch (err) {
             console.error('Error fetching admin profile:', err);
