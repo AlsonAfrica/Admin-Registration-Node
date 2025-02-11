@@ -29,6 +29,9 @@
 ## Layout
 ![image](https://github.com/user-attachments/assets/dbb368fe-a6bf-4d1f-bf43-429f56aca476)
 
+## In Application Layout
+![image](https://github.com/user-attachments/assets/f661804b-8be4-4d8c-9691-f4c96fd05510)
+
 
 ## Credentials 
 System-Admin: 
