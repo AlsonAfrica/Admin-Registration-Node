@@ -28,8 +28,8 @@
 
 ## Credentials 
 System-Admin: 
-Email => james@gmail.com
-Password => System@25
+Email => salah@gmail.com
+Password => Password@2025
 
 Mini-admin:
 Email => kabelo@gmail.com
