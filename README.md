@@ -26,6 +26,10 @@
 - 📸 Profile photo
 - 👨‍💼 Company role (default: sysadmin)
 
+## Layout
+![image](https://github.com/user-attachments/assets/dbb368fe-a6bf-4d1f-bf43-429f56aca476)
+
+
 ## Credentials 
 System-Admin: 
 Email => salah@gmail.com
